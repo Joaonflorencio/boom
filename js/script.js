@@ -6,15 +6,12 @@ let countdownInterval;
     
 document.addEventListener('keydown', function(event) {
     if(event.key === 'Enter'){
-        clearInterval(countdownInterval);
-
         const Game = new Promise((resolve) => {
             countdownInterval = setInterval(() => {
                 document.getElementById('countdown').innerHTML = `Countdown: ${countdown} seconds`;
                 countdown--;
-
                 if(countdown < 0) {
-                    clearInterval(countdownInterval);
+                    clearInterval(countdownInterval)
                     resolve();
                 }
             }, 1000);
@@ -24,9 +21,15 @@ document.addEventListener('keydown', function(event) {
 
         function displayResult () {
             if(userNumber === gameNumber) {
-                document.getElementById('result').innerHTML = `Has salvado el mundo! Has elegido el número ${userNumber} y el número correcto era ${gameNumber}.`
+                document.getElementById('result').innerHTML = `
+                    <div id='result-green'>Has salvado el mundo!</div> 
+                    <div class ='message'>Has elegido el número ${userNumber} y el número correcto era ${gameNumber}.</div>
+                `
             } else {
-                document.getElementById('result').innerHTML = `La bomba ha estallado! Has elegido el número ${userNumber} y el número correcto era ${gameNumber}.`
+                document.getElementById('result').innerHTML = `
+                    <div id='result-red'>La bomba ha estallado!</div> 
+                    <div class ='message'>Has elegido el número ${userNumber} y el número correcto era ${gameNumber}.</div>
+                `
             }
         }
 
